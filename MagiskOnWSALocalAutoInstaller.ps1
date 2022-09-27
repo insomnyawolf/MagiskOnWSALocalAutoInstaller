@@ -26,7 +26,7 @@ if (!$IsAdmin) {
         $originalArguments += $arg;
     }
 
-    Start-Process -FilePath 'powershell' -Wait -Verb RunAs -ArgumentList $originalArguments;
+    Start-Process -FilePath 'powershell' -Verb RunAs -ArgumentList $originalArguments;
     exit
 }
 
@@ -93,8 +93,7 @@ foreach ($feature in $FeaturesRequiered) {
 if ($isRestartRequiered) {
     $infoText = "The computer will be restarted to enable the needed features, please save your work and run this script again after the reboot";
     Write-Output $infoText;
-    shutdown /r /t 15 /c $infoText
-    shutdown -a
+    shutdown /r /t 300 /c $infoText
     exit
 }
 
