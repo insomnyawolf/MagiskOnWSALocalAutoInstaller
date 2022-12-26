@@ -99,17 +99,17 @@ if ($isRestartRequiered) {
 
 Write-Output "Preparing building environment";
 
-wsl --update
+WSL --update
 
 $wslAvailableDistrosRaw = wsl --list;
 # regexr.com/6uoof
-$wslAvailableDistrosClean = $wslAvailableDistrosRaw -replace '[^\u0030-\u0039\u0041-\u005A\u0061-\u007A ]', '';
+$wslAvailableDistrosClean = $wslAvailableDistrosRaw -replace '[^0-9A-Za-z()\- ]', '';
 
 $distroWeNeed = $null;
 
 foreach ($availableDistro in $wslAvailableDistrosClean) {
     if ($availableDistro.StartsWith("Ubuntu")){
-        $distroWeNeed = $availableDistro.Replace(" predeterminado", "");
+        $distroWeNeed = $availableDistro.Split(" (")[0];
         break;
     }
 }
